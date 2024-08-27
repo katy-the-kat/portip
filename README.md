@@ -101,7 +101,7 @@ case "$1" in
 esac
 ' > /bin/portip
 
-sudo chmod +x /bin/portip
+chmod +x /bin/portip
 ```
 
 ## Usage
