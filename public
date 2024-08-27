@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# This code is worthless piece of shit code ive ever heard. written by an AI shitter - Katy
-
 PORTS_FILE="/ports.info.txt"
 
 add_port() {
@@ -59,6 +57,20 @@ refresh_ports() {
     echo "Ports have been successfully restarted."
 }
 
+list_ports() {
+    if [[ ! -f "$PORTS_FILE" ]]; then
+        echo "No ports to list."
+        exit 1
+    fi
+    
+    echo "Current port mappings:"
+    while IFS= read -r line; do
+        random_port=$(echo $line | cut -d':' -f1)
+        local_port=$(echo $line | cut -d':' -f2)
+        echo "Local port ${local_port} -> Public port ${random_port} (138.68.79.95)"
+    done < $PORTS_FILE
+}
+
 # Main function to parse the input commands
 case "$1" in
     add)
@@ -70,8 +82,11 @@ case "$1" in
     refresh)
         refresh_ports
         ;;
+    list)
+        list_ports
+        ;;
     *)
-        echo "Usage: $0 {add|remove|refresh} [port]"
+        echo "Usage: $0 {add|remove|refresh|list} [port]"
         exit 1
         ;;
 esac
