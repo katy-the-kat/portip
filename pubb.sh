@@ -1,4 +1,4 @@
-echo '#!/bin/bash
+#!/bin/bash
 
 PORTS_FILE="/ports.info.txt"
 
@@ -17,7 +17,7 @@ add_port() {
     
     echo "${random_port}:${local_port}" >> $PORTS_FILE
     
-    echo "${local_port} is now on 138.68.79.95:${random_port}"
+    echo "${local_port} is now on 145.223.33.28:${random_port}"
 }
 
 remove_port() {
@@ -90,6 +90,3 @@ case "$1" in
         exit 1
         ;;
 esac
-' > /bin/port
-
-chmod +x /bin/port
