@@ -12,7 +12,7 @@ add_port() {
     local random_port
     random_port=$(shuf -i 1024-65535 -n 1)
     
-    ssh -o StrictHostKeyChecking=no -f -N -R 0.0.0.0:${random_port}:localhost:${local_port} root@145.223.33.28 > /dev/null &
+    ssh -o StrictHostKeyChecking=no -f -N -R 0.0.0.0:${random_port}:localhost:${local_port} u@145.223.33.28 > /dev/null &
     ssh_pid=$!
     
     echo "${random_port}:${local_port}" >> $PORTS_FILE
@@ -34,7 +34,7 @@ remove_port() {
         exit 1
     fi
     
-    pkill -f "ssh -o StrictHostKeyChecking=no -f -N -R 0.0.0.0:${random_port}:localhost:${local_port} root@145.223.33.28" > /dev/null
+    pkill -f "ssh -o StrictHostKeyChecking=no -f -N -R 0.0.0.0:${random_port}:localhost:${local_port} u@145.223.33.28" > /dev/null
     
     sed -i "/${random_port}:${local_port}/d" $PORTS_FILE > /dev/null
     
@@ -51,7 +51,7 @@ refresh_ports() {
         random_port=$(echo $line | cut -d':' -f1)
         local_port=$(echo $line | cut -d':' -f2)
         
-        ssh -o StrictHostKeyChecking=no -f -N -R 0.0.0.0:${random_port}:localhost:${local_port} root@145.223.33.28 > /dev/null &
+        ssh -o StrictHostKeyChecking=no -f -N -R 0.0.0.0:${random_port}:localhost:${local_port} u@145.223.33.28 > /dev/null &
     done < $PORTS_FILE
     
     echo "Ports have been successfully restarted."
