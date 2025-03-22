@@ -80,7 +80,6 @@ list_ports() {
     done < $PORTS_FILE
 }
 
-# Main function to parse the input commands
 case "$1" in
     add)
         add_port "$2"
