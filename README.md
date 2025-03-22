@@ -143,5 +143,3 @@ Once installed, you can use the `portip` command to manage your port forwarding.
 ## Notes
 
 - Make sure you have `ssh` installed and configured on your system.
-- `/ports.info.txt` will be created in the directory where the script is executed, storing the port mappings.
-
